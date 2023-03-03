@@ -1,0 +1,119 @@
+/*Bodestean Jordan
+Pornind de la exemplul 4b, introduceti metode de tip set la atributele clasei Persoana, astfel incat introducerea datelor sa fie facuta cu metoda introdu( ) si metode setter in loc de constructor. Preluati optiunile cu confirmare, la fel ca la exemplul 4a. Continuati la optiune gresita dand un mesaj adecvat. Asigurati consistenta supraincarcarii operatorilor de indexare (cand nu se gaseste obiectul). Considerati atributul nume de tip char *, alocarea spatiului fiind facuta in constructori. Definiti copy constructorul si supraincarcati operatorul de asignare in cadrul clasei Persoana. Introduceti destructori in ambele clase. Considerati acum procesul de sortare dupa aceleasi chei ca si la cautare cu afisarea rezultatelor in ordine descrescatoare. Verificati functionalitatea elementelor introduse.*/
+
+
+#include<iostream>
+#define _CRT_SECURE_NO_WARNINGS
+#include<string>
+using namespace std;
+
+const int maxx = 31;//nr. caractere
+const int dim = 5;//nr. obiecte implicit
+class Persoana {
+	char* nume;
+	double greutate;
+	int varsta;
+public:
+	Persoana() {
+		nume = new(nothrow) char[12];
+		strcpy_s(nume, 12, "Necunoscut");
+		greutate = 0.0;
+		varsta = 0;
+	}
+
+	void setNume(char* nume) {
+		if (strcmp(this->nume, "Necunoscut") == 0)
+		{
+			delete[]this->nume;
+		}
+		nume = new(nothrow) char[strlen(nume) + 1];
+		strcpy_s(this->nume, strlen(nume) + 1, nume);
+	}
+	void setGreutate(double greutate) {
+		this->greutate = greutate;
+	}
+	void setVarsta(int varsta) {
+		this->varsta = varsta;
+	}
+	char* getNume() {
+		return nume;
+	}
+	double getGreutate() {
+		return greutate;
+	}
+	int getVarsta() {
+		return varsta;
+	}
+	void display() {
+		cout << "\nNume: " << this->nume;
+		cout << "\nGreutate: " << greutate;
+		cout << "\nVarsta: " << varsta;
+	}
+};
+//Analize si Persoana sunt in relatie de asociere
+class Analize {
+	Persoana* p;
+	int n;
+public:
+	Analize() {
+		p = new (nothrow) Persoana[dim];
+		n = dim;
+	}
+	Analize(int nr) {
+		p = new (nothrow) Persoana[nr];
+		n = nr;
+	}
+	void introdu() {
+		int j;
+		char nume[100];
+		double greutate;
+		int varsta;
+		for (j = 0; j < n; j++) {
+			Persoana persoana;
+			cout << "\nDatele pentru persoana: " << j + 1; cout << "\nNume: ";
+			cin >> nume;
+			persoana.setNume(nume);
+			cout << "\nGreutate: ";
+			cin >> greutate;
+			persoana.setGreutate(greutate);
+			cout << "\nVarsta: ";
+			cin >> varsta;
+			persoana.setVarsta(varsta);
+			p[j] = persoana;
+		}
+	}
+	void operator[ ](char* nume) {
+		int j;
+		for (j = 0; j < n; j++)
+			if (strcmp(nume, p[j].getNume()) == 0) p[j].display();
+	}
+	void operator[ ](double greutate) {
+		int j;
+		for (j = 0; j < n; j++)
+			if (greutate == p[j].getGreutate()) p[j].display();
+	}void operator[ ](int varsta) {
+		int j;
+		for (j = 0; j < n; j++)
+			if (varsta == p[j].getVarsta()) p[j].display();
+	}
+};
+
+int main() {
+	int n;
+	char c;
+	char nume[maxx];
+	double greutate;
+	int varsta;
+	cout << "\nCate persoane? ";
+	cin >> n;
+	Analize a(n);
+	a.introdu();
+	cout << "Cautare dupa (v = varsta, g = greutate, n = nume, e=exit)? ";
+	cin >> c;
+	switch (toupper(c)) {
+	case 'V': { cout << "\nVarsta: "; cin >> varsta; a[varsta]; break; }
+	case 'G': { cout << "\nGreutate: "; cin >> greutate; a[greutate]; break; }
+	case 'N': { cout << "\nNume: "; cin >> nume; a[nume]; break; }
+	case 'E': return 0;
+	}
+}

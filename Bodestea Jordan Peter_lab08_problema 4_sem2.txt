@@ -1,0 +1,40 @@
+/*Bodestean Jordan
+Scrieţi o aplicaţie C/C++ care defineşte într-o clasă variabila publică contor var_static de tip static întreg.
+Aceasta se va incrementa în cadrul constructorului. După o serie de instanţieri, să se afişeze numarul de obiecte
+create*/
+
+#include<iostream>
+using namespace std;
+
+class Obiect
+{
+        int valoare;
+public:
+          static int val_static;  //variabila tip static
+          Obiect(int val)    //incrementare in cadrul constructorului
+          {
+                  valoare = val;
+                  val_static++;
+          }
+          int getValoare()
+          {
+                  return valoare;
+          }
+          int getVar_static()
+          {
+                  return val_static;
+          }
+};
+int Obiect::val_static;
+
+int main()
+{
+
+        Obiect ob1(120);
+        Obiect ob2(1001);
+        Obiect ob3(202);
+        Obiect ob4(3034);
+
+        cout << "Numarul de obiecte create este: " << Obiect::var_static;
+
+}

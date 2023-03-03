@@ -1,0 +1,99 @@
+/*Bodestean Jordan-Denisa Trifon
+
+Să se implementeze o clasă de bază cu două atribute protected de tip întreg care conţine o metoda mutator pentru fiecare
+atribut al clasei, parametri metodelor fiind preluati in main() de la tastatura şi metode accesor pentru fiecare atribut care returneaza atributul
+specific.Să se scrie o a doua clasă, derivată din aceasta, care implementează operaţiile matematice elementare : +, -, *, / asupra atributelor din clasa
+de bază, rezultatele fiind returnate de metode.Să se scrie o a treia clasă, derivată din cea de - a doua, care implementează în plus o metoda pentru
+extragerea rădăcinii pătrate dintr - un număr(mul, rezultat al operatiei * din prima clasa derivata) şi de ridicare la putere(atât baza(plus, rezultat
+al operatiei + din prima clasa derivata) cât şi puterea(minus, rezultat al operatiei - din prima clasa derivata) sunt trimişi ca parametri).Verificati
+apelul metodelor considerand obiecte la diferite ierarhii.*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <math.h>
+#include <cstdlib>
+using namespace std;
+
+class Baza {
+protected:
+	int a, b;
+public:
+	Baza(int a, int b) {
+		this->a = a;
+		this->b = b;
+	}
+	int getA() {
+		return a;
+	}
+	int getB() {
+		return b;
+	}
+
+};
+//clasa derivata, in mod public
+class Derivata_Baza : public Baza
+{
+public:
+	Derivata_Baza(int a, int b) :Baza(a, b) {
+	}
+	int suma() {
+		return a + b;
+	}
+	int diferenta() {
+		return a - b;
+	}
+	int produs() {
+		return a * b;
+	}
+	float cat() {
+		return (float)a / b;
+	}
+
+};
+//clasa derivata a derivatei, publica
+class Derivata_Derivata : public Derivata_Baza
+{
+public:
+	Derivata_Derivata(int a, int b) :Derivata_Baza(a, b) {
+	}
+	float radical() {
+		return (float)sqrt(produs());
+	}
+	float putere() {
+		float rez = 1, aux;
+		int baza, putere, nr;
+		baza = suma();
+		putere = diferenta();
+		aux = (float)1 / baza;
+		nr = abs(putere);
+		if (putere > 0) {
+			for (int i = 0; i < nr; i++) {
+				rez *= baza;
+			}
+		}
+		else if (putere < 0) {
+			for (int i = 0; i < nr; i++) {
+				rez = rez * (float)aux;
+			}
+		}
+		else {
+			rez = 1;
+		}
+		return rez;
+	}
+};
+
+int main()
+{
+	Derivata_Derivata dd(2, 4);
+	Baza b(10, 3);
+	Derivata_Baza db(2, -3);
+	cout << "\nArgumentele obiectului din clasa Baza sunt " << b.getA() << " si " << b.getB();
+	cout << "\nSuma dintre " << db.getA() << "," << db.getB() << " este "<< db.suma();
+	cout << "\nDiferenta dintre" << dd.getA() << "," << dd.getB() << " este " << dd.diferenta();
+	cout << "\nProdusul dintre " << db.getA() << "," << db.getB() << " este " << db.produs();
+	cout << "\nCatul dintre " << dd.getA() << "," << dd.getB()  << " este " << dd.cat();
+	cout << "\nRadicalul " << dd.getA() << "," << dd.getB() << " este " << dd.radical();
+	cout << "\nPuterea " << dd.getA() << "," << dd.getB() << " este " << dd.putere();
+	return 0;
+}

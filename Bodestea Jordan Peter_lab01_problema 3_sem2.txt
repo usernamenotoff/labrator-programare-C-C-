@@ -1,0 +1,39 @@
+//lab1 problema 3
+//Considerati o structura de date Student, care contine un camp de tip sir de caractere (maxim 30) pentru
+nume_prenume si un alt camp nota de tip int. Definiti un obiect de tip Student la care datele vor fi citite de la
+tastatura. Validati folosind asertiuni ca nume_prenume sa aiba cel putin 5 caractere iar nota sa fie >=5 si <=10.
+Afisati campurile obiectului in caz de introducere corecta//
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include <assert.h>
+#include <string.h>
+
+using namespace std;
+
+int main() {
+	
+	struct student {
+		 char nume_prenume[30];
+		int nota;
+
+
+
+	}c;
+	
+	cout << " introduceti numele si prenumele  studentului ";
+	getline(cin,c.nume_prenume);
+	cout << " introduceti nota studentului ";
+	cin >> c.nota;
+	assert(c.nota > 5 && c.nota < 10);
+	cout << c.nota<<endl;
+	assert(strlen(c.nume_prenume) > 5);
+	cout << c.nume_prenume;
+
+
+
+}
+
+

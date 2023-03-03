@@ -1,0 +1,44 @@
+/* Bodestean Jordan-Trifon Denisa
+Rezolvaţi problema 4 în cazul în care variabila statică este de tip private. Definiţi o metodă accesor care returnează valoarea contorului.
+Analizati cazul in care metoda accesor e statica sau nestatica si modul in care e apelata.*/
+
+#include<iostream>
+using namespace std;
+
+class Obiect
+{
+private: int valoare;
+       static int var_static;   //variabila tip static
+public:
+ 
+    Obiect(int val)    //incrementare in cadrul constructorului
+    {
+        valoare = val;
+        var_static++;
+    }
+    int getValoare()
+    {
+        return valoare;
+    }
+    int getVar_static()
+    {
+        return var_static;
+    }
+    static int getContor()
+    {
+        return var_static;
+    }
+};
+int Obiect::var_static;
+
+int main()
+{
+
+    Obiect ob1(12);
+    Obiect ob2(100);
+    Obiect ob3(20);
+    Obiect ob4(30);
+    Obiect ob5(980);
+
+    cout << "Numarul de obiecte create este: " << Obiect::getContor();
+

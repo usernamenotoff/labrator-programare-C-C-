@@ -1,0 +1,41 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string.h>
+*/Bodestean Jordan
+Scrieţi un program C++ în care afişaţi diferite valori în zecimal, octal şi hexazecimal. Afişaţi
+valorile aliniate la dreapta, respectiv la stânga într-un câmp de afişare cu dimensiunea 15.
+Utilizaţi manipulatorul setfill( ) pentru stabilirea caracterului de umplere şi metodele width( )
+şi precision( ) pentru stabilirea dimensiunii câmpului de afişare şi a preciziei. */
+
+#include <math.h>
+#include<iomanip>
+using namespace std;
+
+
+int main() {
+	//alinierea la dreapta
+	cout.width(15);
+	cout.setf(ios::right);
+	cout << hex << 100<<endl;
+	cout.unsetf(ios::right);
+	//aliniere la stanga
+	cout.width(15);
+	cout.setf(ios::left);
+	cout << oct << 100 << endl;
+	cout.unsetf(ios::left);
+	//afisarea Y//
+	
+
+	cout << setfill('Y') << setw(15)<<endl;
+	cout << setprecision(15);
+	cout <<dec<<15 << endl;
+	
+	
+	
+	
+	return 0;
+}
+
+
+
+

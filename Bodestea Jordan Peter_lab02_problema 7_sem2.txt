@@ -1,0 +1,44 @@
+//lab02 problema 7//
+//Să se calculeze suma numerelor impare dintr-un tablou unidimensional de numere întregi în
+mod recursiv, tablou citit dintr-un fişier unde, ca primă valoare, avem numărul de elemente ale
+tabloului.//
+
+
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+#define MAX 20
+#define n 5 //introduceti nr de numere//
+int nrimpare(int[MAX]);
+
+int main()
+{
+	int c[MAX];
+	
+	int i;
+	for (i = 0; i < n; i++) {
+		cin >> c[i];
+	}
+	
+	cout << nrimpare(c);
+
+
+
+
+
+
+}
+
+int nrimpare(int a[MAX]) {
+	int i;
+
+	int s = 0;
+	for (i = 0; i < n; i++) {
+		if (a[i] % 2 != 0)s = s + a[i];
+
+
+	}
+	return s;
+
+}

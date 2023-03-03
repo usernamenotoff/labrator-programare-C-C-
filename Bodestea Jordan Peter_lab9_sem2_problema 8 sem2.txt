@@ -1,0 +1,45 @@
+/*Bodestean Jordan
+Să se scrie programul care utilizează o clasă numită Calculator şi care are în componenţa sa metodele publice supraincarcate:
+- int calcul(int x) care returnează pătratul valorii primite;
+- int calcul(int x, int y) care returnează produsul celor două valori primite;
+- double calcul(int x, int y, int z) care returnează rezultatul înlocuirii în formula f(x,y,z) = (x-y)(x+z)/2. a valorilor primite;
+Programul primeşte din linia de comandă toţi parametrii necesari pentru toate aceste metode ale clasei.
+Considerați și cazul în care toate aceste metode sunt statice. E posibil să aveți în același timp metode publice statice și non-statice? Analizati si cazul in care clasa are 3 atribute private de tip int, x, y, z, care sunt modificate cu metode setter adecvate. Ce trebuie sa modificati pentru a putea efectua operatiile cerute?
+*/
+
+#include<iostream>
+#define _CRT_SECURE_NO_WARNINGS
+using namespace std;
+
+class Calculator
+{
+public:
+	int calcul(int x)
+	{
+		return x * x;
+	}
+	int calcul(int x, int y)
+	{
+		return x * y;
+	}
+	int calcul(int x, int y, int z)
+	{
+		return (x - y)*(x + z) / 2;
+	}
+};
+
+int main()
+{
+	Calculator c;
+	int x, y, z;
+	cout << "Dati numarul caruia doriti sa ii calculati patratul " << endl;
+	cin >> x;
+	cout << "Rezultatul este " << c.calcul(x) << endl;
+	cout << "Dati cele 2 numere carora doriti sa le calculati produsul " << endl;
+	cin >> x >> y;
+	cout << "Rezultatul este " << c.calcul(x, y) << endl;
+
+	cout << "Dati cele 3 numere cu care doriti sa calculati (x-y)(x+z)/2 " << endl;
+	cin >> x >> y >> z;
+	cout << "Rezultatul este " << c.calcul(x, y, z) << endl;
+}

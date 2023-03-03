@@ -1,0 +1,69 @@
+/* Bodestean Jordan 
+Definţi o clasă numită Repository care are două variabile private de tip întreg. Clasa mai conţine un constructor explicit vid si unul cu 2 parametri şi o metodă accesor care afişează valorile variabilelor din clasă. Scrieţi o clasă numită Mathemathics, friend cu prima clasă, care implementează operaţiile aritmetice elementare (+, -, *, /) asupra variabilelor din prima clasa. Fiecare metoda primeşte ca parametru un obiect al clasei Repository*/
+
+
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Repository {
+private:int x, y;
+
+public:
+	Repository();
+	Repository(int a, int b) {
+		x = a;
+		y = b;
+	}
+	int getX() {
+		return x;
+	}
+	int getY() {
+		return y;
+	}
+	
+};
+
+class Matemathics {
+
+	friend int suma(Repository);
+		
+	friend int scadere(Repository);
+	friend int impartire(Repository);
+	friend int inmultire(Repository);
+};
+
+ int suma(Repository l) {
+	int suma;
+	suma = l.getX() + l.getY();
+	return suma;
+}
+ int scadere(Repository l) {
+	 int scadere;
+	 scadere = l.getX() - l.getY();
+	 return scadere;
+ }
+
+ int impartire(Repository l) {
+	 int impartire;
+	 impartire = l.getX() / l.getY();
+	 return impartire;
+ }
+ int inmultire(Repository l) {
+	 int inmultire;
+	 inmultire = l.getX() * l.getY();
+	 return inmultire;
+ }
+
+int main() {
+	Repository ob1(30, 2);
+	cout << ob1.getX() << endl;
+	cout << ob1.getY() << endl;
+	
+	cout << "adunare:"<<suma(ob1) << endl;
+	cout <<"scadere:"<< scadere(ob1) << endl;
+	cout << "inmultire:"<<inmultire(ob1) << endl;
+	cout <<"impartire:"<< impartire(ob1) << endl;
+}

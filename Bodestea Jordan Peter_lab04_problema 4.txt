@@ -1,0 +1,123 @@
+//problema 4 lab 4//
+//Scrieţi o aplicaţie C/C++ in care plecând de la două tablouri (unidimensionale) de numere naturale să se obţină
+un al treilea tablou care să conţină toate elementele tablourilor sursă fără a se repeta, aranjate în ordine
+crescătoare//
+
+#include <iostream>
+using namespace std;
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+
+{
+
+	int u[1000], v[1000], m, n, i, j, a[2000], k = 1, aux;
+
+	cout << "introduceti nr de elemente a primului sir";
+	cin >> m;
+	cout << endl;
+	for (i = 1; i <= m; i++){
+		cout << "u[" << i << "]" << "=";
+	cin >> u[i];
+	cout << endl;
+}
+
+	
+	cout << "introduceti nr de elemente pentru al doilea sir";
+	cin >> n;
+	cout << endl;
+	for (j = 1; j <= n; j++) {
+		cout << "v[" << j << "]" << "=";
+		cin >> v[j];
+		cout << endl;
+	}
+
+	// sortez primul sir crescator//
+
+	for (i = 1; i < m; i++)
+
+	{
+
+		for (j = i + 1; j <= m; j++)
+		{
+
+			if (u[i] > u[j])
+			{
+				aux = u[i];
+
+				u[i] = u[j];
+
+				u[j] = aux;
+			}
+		}
+	}
+
+	// sortez al doilea sir//
+
+	for (i = 1; i < n; i++)
+	{
+		for (j = i + 1; j <= n; j++)
+
+		{
+        	if (v[i] > v[j])
+			{
+				aux = v[i];
+
+				v[i] = v[j];
+
+				v[j] = aux;
+
+			}
+		}
+	}
+
+	i = 1;
+
+	j = 1;
+
+	while (i <= m && j <= n)
+	{
+		if (u[i] < v[j]) {
+			a[k++] = u[i++];
+		}
+		else
+		{
+
+			if (u[i] > v[j])
+
+				a[k++] = v[j++];
+
+			else
+
+			{
+
+				a[k++] = u[i++];
+
+				j = j + 1;
+
+			}
+
+		}
+
+	}
+
+	while (i <= m) {
+
+		a[k++] = u[i++];
+
+		while (j <= n)
+
+			a[k++] = v[j++];
+	}
+
+	// afisarea vectorului obtinut conform cerintei
+
+	for (i = 1; i < k; i++)
+		cout << a[i] << " ";
+
+	return 0;
+
+}

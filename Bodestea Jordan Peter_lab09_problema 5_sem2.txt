@@ -1,0 +1,101 @@
+/*Bodestean Jordan
+Să se supraîncarce operatorul [ ] astfel încât, folosit fiind asupra unor obiecte din clasa Departament, ce contine un tablou de obiecte de tip Angajat (clasa Angajat contine variabilele nume (şir de caractere) şi salariu (double)), să returneze toată informaţia legată de angajatul al cărui număr de ordine este trimis ca parametru.
+*/
+
+ #include<iostream>
+#define _CRT_SECURE_NO_WARNINGS
+#include<string>
+using namespace std;
+
+class Angajat {
+private:
+	char nume[100];
+	double salariu;
+public:
+	Angajat()
+	{
+		strcpy_s(nume,4, "nec");
+		salariu = 0.0;
+
+	}
+	Angajat(char *nume, double salariu) {
+		strcpy_s(this->nume,strlen(nume)+1, nume);
+		this->salariu = salariu;
+	}
+	Angajat& operator=(const Angajat& a) {
+
+
+		strcpy_s(this->nume, strlen(a.nume) + 1, a.nume);
+		this->salariu = a.salariu;
+		return *this;
+	}
+	char* getNume()
+	{
+		return this->nume;
+	}
+	double getSalariu()
+	{
+		return this->salariu;
+	}
+
+};
+
+class Departament {
+private:
+	Angajat* angajati;
+	int number;
+public:
+	Departament()
+	{
+		this->number = 31;
+		this->angajati = new (nothrow) Angajat[number];
+	}
+	Departament(int n)
+	{
+		this->number = n;
+		this->angajati = new (nothrow) Angajat[number];
+	}
+	void add() {
+		
+		cout << "Introdu date : " << endl;
+		for (int i = 0; i < this->number; i++)
+		{
+			cout << "Dati numele persoanei " << endl;
+			char nume[100];
+			cin >> nume;
+			cout << "Dati salariul persoanei" << endl;
+			double salariu;
+			cin >> salariu;
+			Angajat a1(nume, salariu);
+			angajati[i] = a1;
+		}
+	}
+	void operator[ ](int indice) {
+		int j = 0;
+		while (j < number)
+		{
+			if (j == indice)
+			{
+				cout << angajati[j].getNume() << endl << angajati[j].getSalariu() << endl;
+				break;
+			}
+			j++;
+		}
+			
+	}
+
+
+};
+
+int main()
+{
+	cout << "Cati angajati doriti sa introduceti ? " << endl;
+	int number;
+	cin >> number;
+	Departament d(number);
+	d.add();
+	cout << "Despre al angajat doriti sa aflati infomatii ? " << endl;
+		cin >> number;
+		d[number - 1];
+
+}

@@ -1,0 +1,179 @@
+/* Bodestean Jordan -Denisa trifon
+Definiţi o clasă numită Forme care considera o figura geometrica cu un nume ca si atribut de tip pointer la un sir de caractere. Clasa va contine un constructor fara parametrii, unul cu parametrii, copy/move constructor si se va supraincarca operatorul de asignare. Clasa va avea si metode getter/setter si un destructor. Derivati in mod public o clasa Cerc care adauga un atribut de tip int pentru raza si constructori adecvati considerand si atributele (nume, raza) si o metoda getter pentru raza si alte metode care calculeaza aria si perimetrul cercului de raza r, valoare introdusa in main( ) de la tastatura. Similar definiti o clasa Patrat si Dreptunghi care permit determinarea ariei si perimetrului obiectelor specifice. Instantiati obiecte din clasele derivate si afisati aria si perimetrul obiectelor. Datele specifice vor fi introduse de la tastatura. Definiti un obiect de tip Cerc cu parametrii care sa il copiati intr-un nou obiect clona la care sa
+ii afisati atributele. Definiti un obiect de tip Patrat cu parametrii si altul fara parametrii. Asignati celui fara parametrii obiectul instantiat cu parametrii si afisati atributele.
+*/
+
+#include <cstring>
+
+class Forme {
+    char *nume;
+
+public:
+    Forme() {
+        nume = new char[20];
+    }
+
+    Forme(char *nume_){
+        this->nume = new char[strlen(nume_) + 1];
+        strcpy(this->nume, nume_);
+    }
+
+    Forme(const Forme& forme){
+        this->nume = new char[strlen(forme.nume) + 1];
+        strcpy(this->nume, nume);
+    }
+
+    virtual ~Forme() {
+        delete[] nume;
+    }
+
+    Forme& operator=(const Forme& forme){
+        this->nume = new char[strlen(forme.nume) + 1];
+        strcpy(this->nume, forme.nume);
+        return *this;
+    }
+};
+
+
+
+#include "Forme.h"
+
+class Cerc : public Forme{
+    int raza;
+
+public:
+    Cerc(char *nume_, int raza_) : Forme(nume_){
+        this->raza = raza_;
+    }
+
+    Cerc(const Cerc& cerc_) : Forme(cerc_) {
+        this->raza = cerc_.raza;
+    }
+
+    Cerc& operator=(const Cerc& cerc_){
+        this->raza = cerc_.raza;
+        return *this;
+    }
+
+    int getRaza() const {
+        return raza;
+    }
+
+    double perimetru() const{
+        return 2 * 3.14 * raza;
+    }
+
+    double arie() const{
+        return 3.14 * raza*raza;
+    }
+};
+
+
+#include "Forme.h"
+
+class Dreptunghi : public Forme{
+    int lungime;
+    int latime;
+
+public:
+    Dreptunghi(char *nume_, int lungime_, int latime_): Forme(nume_),
+        lungime(lungime_), latime(latime_){}
+
+    Dreptunghi(const Dreptunghi& dreptunghi_) : Forme(dreptunghi_) {
+        this->lungime = dreptunghi_.lungime;
+        this->latime = dreptunghi_.latime;
+    }
+
+    Dreptunghi& operator=(const Dreptunghi& dreptunghi_){
+        this->lungime = dreptunghi_.lungime;
+        this->latime = dreptunghi_.latime;
+        return *this;
+    }
+
+    double perimetru() const{
+        return 2 * lungime + 2 * latime;
+    }
+
+    double arie() const{
+        return lungime * latime;
+    }
+};
+
+
+
+#include "Forme.h"
+
+class Patrat : public Forme{
+    int latura;
+
+public:
+    Patrat(char *nume_, int latura_) : Forme(nume_), latura(latura_){}
+
+    Patrat(const Patrat& patrat_) : Forme(patrat_) {
+        this->latura = patrat_.latura;
+    }
+
+    Patrat& operator=(const Patrat& cerc_){
+        this->latura = cerc_.latura;
+        return *this;
+    }
+
+    double perimetru() const{
+        return 4 * latura;
+    }
+
+    double arie() const{
+        return latura*latura;
+    }
+};
+
+
+#include <iostream>
+#include <cstring>
+#include "Dreptunghi.h"
+#include "Patrat.h"
+#include "Cerc.h"
+
+int main() {
+    char s[20];
+    int a,b,r,n;
+
+    std::cout << "Numar de forme: "; std::cin >> n;
+    for (int i=0; i<n; i++){
+        std::cout << "Numele figurii (cerc, patrat, dreptunghi) " << i+1 <<": "; std::cin >> s;
+
+        if (strcmp(s, "cerc") == 0){
+            std::cout << "Raza cercului: "; std::cin>> r;
+            Cerc c(s, r);
+            std::cout << "Perimetru: " << c.perimetru() << ", arie:" << c.arie() <<"\n";
+        }
+        else if (strcmp(s, "patrat") == 0){
+            std::cout << "Latura patratului: "; std::cin>> a;
+            Patrat p(s, a);
+            std::cout << "Perimetru: " << p.perimetru() << ", arie:" << p.arie() <<"\n";
+        }
+        else if (strcmp(s, "dreptunghi") == 0){
+            std::cout << "Lungimea dreptunghiului: "; std::cin>> a;
+            std::cout << "Latimea dreptunghiului: "; std::cin>> b;
+            Dreptunghi d(s, a,b);
+            std::cout << "Perimetru: " << d.perimetru() << ", arie:" << d.arie() <<"\n";
+        }
+        else
+            std::cout << "Nume invalid!\n";
+    }
+
+    char *nume;
+    strcpy(nume, "cerc");
+    Cerc cerc(nume, 10);
+    Cerc cerc_copie = cerc;
+    std::cout << "Perimetru: " << cerc_copie.perimetru();
+    std::cout << "\nArie: " << cerc_copie.arie();
+    std::cout << "\nRaza: " << cerc_copie.getRaza();
+
+    strcpy(nume, "patrat");
+    Patrat patrat(nume, 10);
+    const Patrat& patrat_copie(patrat);
+    std::cout << "\nPerimetru: " << patrat_copie.perimetru();
+    std::cout << "\nArie: " << patrat_copie.arie();
+    return 0;
+}

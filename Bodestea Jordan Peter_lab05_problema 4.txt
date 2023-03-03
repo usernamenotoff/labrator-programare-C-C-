@@ -1,0 +1,43 @@
+/*Bodestean Jordan 
+Să se scrie programul care implementează clasa Numar cu un atribut de tip int val şi care, în
+cadrul funcţiei main(), declară un obiect de tipul clasei şi apoi un pointer la acesta, prin
+intermediul cărora se va afişa pe ecran rezultatul adunării a două numere de tip Numar cu
+valorile preluate de la tastatură in cadrul unor obiecte Numar. Implementati metoda int
+suma_nr(Numar) care realizeaza suma în cadrul clasei şi o returneaza ca un int, metoda care
+insumeaza cele doua obiecte (curent si parametru). Implementati metoda in cadrul clasei si
+alta metoda cu acelas scop, dar nume diferit, in afara clasei.*/
+
+
+#include<iostream>
+using namespace std;
+
+class Numar {
+
+private: int val;
+
+public:
+	 void setval(int val){
+		 this->val = val;
+	}
+
+	 int getval() {
+		 return val;
+	 }
+	 Numar suma_nr(Numar c);
+};
+ Numar Numar::suma_nr(Numar c) {
+	 Numar rez;
+	 rez.val = (val + c.val);
+	 return rez;
+}
+
+int main() {
+	Numar ob1, ob2;
+	ob1.setval(5);
+	ob1.getval();
+	ob2.setval(6);
+	ob2.getval();
+	Numar c;
+c=ob1(ob2);
+cout<<c.getval();
+}

@@ -1,0 +1,141 @@
+/* Bodestean Jordan-Trofin Denisa
+Să se scrie o aplicaţie C++ care implementează o clasă numită PilotF1. Clasa definește
+variabilele private nume (șir de caractere), echipa (șir de caractere), varsta (int), record (int),
+nr_pole_position (int). Ca membri publici, clasa conține metode accesor/getter și
+mutator/setter distincte pentru fiecare din atributele clasei.
+In funcția main( ), să se creeze 3 instanțe distincte ale clasei PilotF1 și să se folosească
+metodele mutator/setter pentru a inițializa datele din fiecare obiect cu informația
+corespunzătoare citită de la tastatură. Folosind metodele accesor/getter, să se afișeze toate
+datele pilotului cu cel mai bun record.*/
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class Pilot
+{
+private:
+	char nume[20];
+	char echipa[20];
+	int varsta;
+	int record;
+	int nr_pole_position;
+	int record_max;
+
+public:
+	char* getNume()
+	{
+		return nume;
+	}
+	void setNume(const char* n)
+	{
+		strcpy(nume, n);
+	}
+	char* getEchipa()
+	{
+		return echipa;
+	}
+	void setEchipa(char* e)
+	{
+		strcpy(echipa, e);
+	}
+	int getVarsta()
+	{
+		return varsta;
+	}
+	void setVarsta(int varsta)
+	{
+		this->varsta = varsta;
+	}
+	int getRecord()
+	{
+		return record;
+	}
+	void setRecord(int record)
+	{
+		this->record = record;
+	}
+	int getNr_pole_position()
+	{
+		return nr_pole_position;
+	}
+	void setNr_pole_position(int nr_pole_position)
+	{
+		this->nr_pole_position = nr_pole_position;
+	}
+
+	
+
+};
+
+
+
+
+int main()
+{
+	Pilot p1;
+	p1.setVarsta(20);
+	p1.setNume("Mihai");
+	p1.setRecord(200);
+	p1.setNr_pole_position(50);
+	cout << "\n\tPilot 1:";
+	cout << "\nNume: " << p1.getNume();
+	cout << "\nVarsta: " << p1.getVarsta();
+	cout << "\nRecord: " << p1.getRecord();
+	cout << "\nNr pole position: " << p1.getNr_pole_position();
+
+	Pilot p2;
+	p2.setVarsta(40);
+	p2.setNume("Luca");
+	p2.setRecord(500);
+	p2.setNr_pole_position(100);
+	cout << "\n\tPilot 2:";
+	cout << "\nNume: " << p2.getNume();
+	cout << "\nVarsta: " << p2.getVarsta();
+	cout << "\nRecord: " << p2.getRecord();
+	cout << "\nNr pole position: " << p2.getNr_pole_position();
+
+	Pilot p3;
+	p3.setVarsta(38);
+	p3.setNume("Ionescu");
+	p3.setRecord(700);
+	p3.setNr_pole_position(500);
+	cout << "\n\tPilot 3:";
+	cout << "\nNume: " << p3.getNume();
+	cout << "\nVarsta: " << p3.getVarsta();
+	cout << "\nRecord: " << p3.getRecord();
+	cout << "\nNr pole position: " << p3.getNr_pole_position();
+	cout << endl;
+	Pilot max;
+	if (p1.getRecord() > p2.getRecord() && p1.getRecord() > p3.getRecord()) {
+		max.setNume(p1.getNume());
+		max.setVarsta(p1.getVarsta());
+		max.setRecord(p1.getRecord());
+		max.setNr_pole_position(p1.getNr_pole_position());
+
+	}
+	else if (p2.getRecord() > p1.getRecord() && p2.getRecord() > p3.getRecord()) {
+		max.setNume(p2.getNume());
+		max.setVarsta(p2.getVarsta());
+		max.setRecord(p2.getRecord());
+		max.setNr_pole_position(p2.getNr_pole_position());
+
+
+	}
+	else {
+		max.setNume(p3.getNume());
+		max.setVarsta(p3.getVarsta());
+		max.setRecord(p3.getRecord());
+		max.setNr_pole_position(p3.getNr_pole_position());
+	}
+	cout << endl;
+	cout << "Pilot cu recordul cel mai mare" << endl;
+	cout << "varsta:"<<max.getVarsta() << endl;
+	cout << "nume:"<<max.getNume() << endl;
+	cout << "record:"<<max.getRecord() << endl;
+	cout << "nr pole positie:"<<max.getNr_pole_position() << endl;
+	
+}

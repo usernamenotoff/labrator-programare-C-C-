@@ -1,0 +1,51 @@
+*/Bodestean Jordan
+Să se definească o clasă numită myString (într-un fişier numit strClass.h) care să fie compusă
+din metodele specifice care efectuează următoarele operaţii pe şiruri de caractere:
+- determină lungimea şirului primit la intrare.
+- determină ultima poziţie de apariţie a unui anumit caracter din şirul de intrare.
+- returnează şirul primit la intrare, scris cu caractere majuscule.
+- returnează şirul primit la intrare, scris cu caractere minuscule.
+- returnează numărul de apariţii ale unui anumit caracter din şirul primit
+*/
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+#include<string>
+
+class myString {
+	char sir[20];
+public:
+	void setSir(const char m[20]) {
+		strcpy(sir, m);
+	}
+
+	int getLungime() {
+		return strlen(sir);
+	}
+
+	char* getSir() {
+		return sir;
+	}
+};
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+#include<string>
+
+int main() {
+	int contor = 0;
+	  char n;
+	cout << "introduceti o litera";
+	cin >> n;
+	myString p1;
+	p1.setSir("amiaza");
+	cout << p1.getSir()<<endl;
+	cout << p1.getLungime()<<endl;
+}
+	
+	
+

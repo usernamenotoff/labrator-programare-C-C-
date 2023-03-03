@@ -1,0 +1,66 @@
+//Modificaţi programul care exemplifică metoda de sortare rapidă explicita (Quick-Sort) aşa încât să ordoneze
+şirul iniţial în ordine descrescătoare.//
+
+#include <iostream>
+using namespace std;
+#include <time.h>//pentru unele versiuni de compilatoare
+void init(int numere[], int);
+void afis(int numere[], int);
+void quick(int numere[], int);
+int comparare(const void* arg1, const void* arg2);
+int main() {
+	int dim, * numere;
+	cout << "\nIntrodu nr. elemente: ";
+	cin >> dim;
+	numere = new (std::nothrow) int[dim];
+	if (numere == 0) { cout << "\nErr. alocare elemente: \n"; exit(1); }
+	init(numere, dim);
+	afis(numere, dim);
+	
+	
+	quick(numere, dim);
+	afis(numere, dim);
+	delete[]numere;
+}
+void init(int numere[], int dim)
+{
+	clock_t start, end;
+	double dif;
+	time_t t;
+	start = clock();
+	srand((unsigned)time(&t));//srand((unsigned)time(0));
+	for (int i = 0; i < dim; i++) {
+		numere[i] = rand();
+	}
+	end = clock();
+	dif = (double)(end - start);
+	cout << "\nGenerarea numerelor a durat (clicks) " << dif << " si (seconds) " << dif / CLOCKS_PER_SEC
+		<< endl;
+}
+void afis(int numere[], int dim)
+{
+	clock_t start, end;
+	double dif;
+	start = clock();
+	for (int i = 0; i < dim; i++)
+		cout << " " << numere[i];
+	end = clock();
+	dif = (double)(end - start);
+	cout << "\nAfisarea numerelor a durat (clicks) " << dif << " si (seconds) " << dif / CLOCKS_PER_SEC <<
+		endl;
+}
+
+void quick(int numere[], int dim) {
+	clock_t start, end;
+	double dif;
+	start = clock();
+	qsort(numere, dim, sizeof(numere[0]), comparare);
+	end = clock();
+	dif = (double)(end - start);
+	cout << "\nOrdonarea cu \"quick sort\" a numerelor a durat (clicks) " << dif << " si (seconds) " << dif /
+		CLOCKS_PER_SEC << endl;
+}
+int comparare(const void* arg1, const void* arg2)
+{
+	return (*(int*)arg2 - *(int*)arg1);//ordonarea descrescatoare//
+}

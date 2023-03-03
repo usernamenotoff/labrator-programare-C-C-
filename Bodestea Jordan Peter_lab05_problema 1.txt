@@ -1,0 +1,94 @@
+
+//ex1 lab05
+/*Să se scrie o aplicaţie C/C++ care foloseşte o structură de date cu numele Scerc care conţine raza ca şi o variabilă de tip întreg.
+ Într-un program C/C++, declaraţi două variabile c1, c2 de tip Scerc şi calculaţi aria şi circumferinţa lor pentru
+ valori ale razei introduse de la tastatură.
+ Aceleaşi cerinţe vor fi implementate în aceiasi aplicaţie folosind o clasă numită Cerc cu atributul raza de tip private, 
+clasă ce va conţine pe lângă metodele de calcul ale ariei şi perimetrului un constructor explicit cu parametru,un destructor.
+ Introduceţi in clasă o metodă de tip accesor, getRaza(), care permite accesul la data privată raza si pe care
+ sa o folositi pentru a afisa in main( ) raza obiectelor.
+Definiţi mai multe obiecte de tip Cerc la care să accesaţi metodele specifice folosind obiectele instanţiate, pointeri la obiecte,
+ referinţe la obiecte.
+*/
+
+
+
+
+//cu structura//
+#include <iostream>
+using namespace std;
+int main(){
+	struct Scerc {
+		int raza;
+		
+	}c1,c2;
+	cout << "introduceti razele de la tastatura" << endl;
+	cin >> c1.raza;
+		cout << endl;
+		cin >> c2.raza;
+			cout << endl;
+	float  aria1 = 3.14 * (c1.raza * c1.raza);
+	float aria2 = 3.14 * (c2.raza * c2.raza);
+	cout << "aria cercului pentru c1ceste=" << aria1 << endl;
+	cout << "aria cercului pentru c2 este =" << aria2 << endl;
+	float circumferinta1 = 3.14 * 2 * c1.raza;
+	float circumferinta2 = 3.14 * 2 * c2.raza;
+	cout << "circumferinta cerc pentru c1 =" << circumferinta1 << endl;
+	cout<<"circumferinta cerc pentru c2 = " << circumferinta2 << endl;
+	
+
+	
+}
+
+
+
+//cu clase//
+
+
+#include <iostream>
+using namespace std;
+
+
+class Cerc {
+private:int raza;
+
+
+public:
+	Cerc(int c = 5);
+	float aria();
+	float perimetru();
+	int GetRaza();
+	~Cerc();
+	
+};
+Cerc::Cerc(int c) {
+	raza = c;
+}
+
+Cerc::~Cerc() {
+	cout << "\nam apelat deconstructorul";
+};
+
+float Cerc::aria() {
+	return 3.14 * raza * raza;
+};
+
+
+float Cerc::perimetru() {
+	return 2 * 3.14 * raza;
+}
+
+int Cerc:: GetRaza() {
+	return raza;
+}
+
+int main() {
+	Cerc arie, perimetru, raza;
+
+	cout << "aria cercului este=" << arie.aria() << endl;
+	cout << "perimetrul este=" << perimetru.perimetru() << endl;
+	cout << "raza cercului este=" << raza.GetRaza() << endl;
+
+
+}
+

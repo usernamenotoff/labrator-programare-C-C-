@@ -1,0 +1,73 @@
+/*Bodestean Jordan
+Scrieţi o aplicaţie C/C++ în care clasa Calculator are un atribut privat memorie_RAM (int) şi o funcție prietenă tehnician_service( ) care permite modificarea valorii acestui atribut. Functia friend va fi membra intr-o alta clasa, Placa_de_baza care are o componentă denumire_procesor (sir de caractere). Scrieţi codul necesar care permite funcției prietene tehnician_service( ) să modifice (schimbe) valoarea variabilei denumire_procesor si memorie _RAM.*/
+ 
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Calculator {
+private:int memorie_RAM;
+
+public:
+	void setMemorie(int memorie) {
+		memorie_RAM = memorie;
+	}
+	int getMemorie() {
+		return memorie_RAM;
+	}
+	friend int tehnician_service(Calculator);
+
+};
+	class Placa_de_baza {
+		string denumire_procesor;
+	public:
+		
+
+		friend string tehnician_service(Placa_de_baza );
+
+		Placa_de_baza(string denumire) {
+			
+			denumire_procesor = denumire;
+
+
+		}
+		 string getProcesor() {
+			return denumire_procesor;
+		}
+			
+
+	};
+	int tehnician_service(Calculator c) {
+		int plus;
+		
+		plus = c.getMemorie() + 6;
+		return plus;
+
+	}
+	string tehnician_service(Placa_de_baza ) {
+		string d;
+		d = "asus";
+		return d;
+	}
+
+	
+	int main() {
+		Calculator ob1;
+		ob1.setMemorie(20);
+		cout << "memorie:"<<ob1.getMemorie() << "GB" << endl;
+		
+		Placa_de_baza ob2("intel");
+		cout << "placa:"<<ob2.getProcesor() << endl;
+		cout << "noua memorie:"<<tehnician_service(ob1) << "GB" << endl;
+		cout << "noua placa:" << tehnician_service(ob2);
+		
+
+}
+
+		    
+	   }
+	  
+
+};

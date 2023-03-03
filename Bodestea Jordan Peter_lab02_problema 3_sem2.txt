@@ -1,0 +1,22 @@
+//lab 02 problema 3//
+//Calculul celui mai mare divizor comun a două numere folosind o funcţie recursivă.//
+
+#include<iostream>
+using namespace std;
+int cmmdc(int m, int n);
+int main()
+{
+    int a;
+    int b;
+    cin >> a >> b;
+   
+    cout << cmmdc(a, b) << endl;
+
+
+}
+
+int cmmdc(int m, int n) {
+    if (m == 0 || n == 0)return m + n;
+    if (m > n)return cmmdc(m % n, n);
+    if (m < n)return cmmdc(m, n % m);
+}

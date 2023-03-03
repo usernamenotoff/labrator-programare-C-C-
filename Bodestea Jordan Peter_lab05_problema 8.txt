@@ -1,0 +1,83 @@
+/* Bodestean Jordan
+Pornind de la clasa Complex, ex.4, să se implementeze operațiile de adunare, scădere,
+înmulțire și împărțire pentru numere complexe prin metode corespunzătoare implementate la
+alegere în clasă și/sau în afara ei. Testați aceste metode prin instanțierea unor obiecte.
+Metodele vor returna obiecte de tip Complex si in main() vor fi afisate rezultatele folosind
+metode accesor.*/
+
+
+#include <iostream>
+using namespace std;
+class Complex {
+	double re, im;
+public:
+	void setRe(double x) {
+		re = x;
+	}
+	void setIm(double x) {
+		im = x;
+	}
+	double getRe() {
+		return re;
+	}
+	double getIm() { return im; }
+	Complex sum(Complex c);
+	Complex difference(Complex c);
+	Complex multi(Complex c);
+	Complex div(Complex c);
+};
+Complex Complex::sum(Complex c) {
+	Complex rez;
+	rez.re = (re + c.re);
+	rez.im = (im + c.im);
+	return rez;
+}
+
+
+Complex Complex::difference(Complex b) {
+	Complex rez;
+	rez.re = (b.re - re);
+	rez.im=(b.im - im);
+	return rez;
+}
+
+Complex Complex::multi(Complex c) {
+	Complex rez;
+	rez.re = (c.re * re);
+	rez.im = (c.im * im);
+	return rez;
+}
+Complex Complex::div(Complex c) {
+	Complex rez;
+	rez.re = (c.re / re);
+	rez.im = (c.im / im);
+	return rez;
+}
+int main() {
+	
+	Complex re1, r2;
+	re1.setRe(5);
+	re1.setIm(6);
+	re1.getRe();
+	re1.getIm();
+	r2.setRe(6);
+	r2.setIm(7);
+	r2.getRe();
+	r2.getIm();
+	Complex c,b;
+	c = re1.sum(r2);//suma
+	cout << c.getRe()<<endl;
+	cout << c.getIm()<<endl;
+	b= re1.difference(r2);//diferenta
+	cout << b.getRe()<<endl;
+	cout << b.getIm()<<endl;
+	c = re1.div(r2);//impart.
+	cout << c.getIm() << endl;
+	cout << c.getRe() << endl;
+	c = re1.multi(r2);
+	cout << c.getIm() << endl;
+	cout << c.getRe() << endl;
+
+	return 0;
+
+}

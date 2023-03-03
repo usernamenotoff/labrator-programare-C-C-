@@ -1,0 +1,25 @@
+//Laboratorul 2 problem 2
+Calculati k Cn , n si k fiind preluate de la tastatura, k<n, utilizând o funcţie recursivă.//
+
+#include<iostream>
+using namespace std;
+int combinari(int, int);
+
+int main()
+{
+    int a;
+    int b;
+    cin >> a >> b;
+    cout << combinari(a, b) << endl;
+
+
+
+}
+int combinari(int n, int k) {
+
+
+    if (k > n)return 0;
+    if (k == 0||    k==n)return 1;
+   return (combinari(n - 1, k) + combinari(n - 1, k - 1));
+
+}

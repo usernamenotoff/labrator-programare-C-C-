@@ -1,0 +1,81 @@
+//lab 03 problema 2//
+//Fie un sistem de calcul care urmăreşte controlul unui proces de transmisie a datelor pe o linie principală având
+un debit maxim de 40MB/s. Fluxul de date de pe această linie este împărţit de către maxim 10 utilizatori,
+traficul pe liniile oferite lor putându-se efectua cu debite între 2 şi 40 MB/s (valori intregi). Impărţirea
+debitelor pe cele maxim 10 linii se face în mod dinamic de către sistemul de control considerând pentru fiecare
+linie i, o pondere subunitară pi, asociată la configurarea sistemului funcţie de utilizator. Introduceţi iniţial cele
+maxim 10 ponderi pi astfel încât suma lor să fie egală cu 1. Dacă această condiţie este verificată generaţi toate
+soluţiile posibile considerând că pe linia principală vom avea cel puţin un debit de 2MB/s, deci de 2...40MB/s
+determinând în aceste cazuri debitele posibile pe cele maxim 10 linii de intrare ale utilizatorilor (ajustate la
+intregi MB/s). Se pune pe 0, dacă nu se poate asigura minimul de 2MB/s. Afişaţi aceste soluţii. Implementarea
+poate fi recursivă sau nerecursivă.//
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+using namespace std;
+void citire(int l[10], float p[10],int n,int m) {
+	
+	float  s;
+	int i;
+	int j;
+	
+		
+		for (i = 0; i < m; i++) {
+			s = 0;
+			cout << "intrdoceti ponderea " << endl;//ponderile pe fiecare linie
+			for (j = 0; j < n; j++) {
+
+				cin >> p[j];
+				s = s + p[j];
+
+
+			}
+			cout << s;
+			if (s != 1)break;//oprirea programului daca ponderile nu sunt bune
+			
+			cout << "introduceti linia MB " << endl;
+				cin >> l[i];
+			
+
+		}
+	}
+
+
+
+float calcul(int l[10],float p[10],int n,int m) {
+	int i;
+	int j;
+	float s = 0;
+
+	for (i = 0; i < m; i++) {
+		for (j = 0; j < n; j++) {
+			s = s + l[i] + (l[i] * p[j]);//calculul total al liniilor//
+
+		}
+	}
+	return s;
+
+
+}
+
+
+int main()
+{
+	int n;
+	int m;
+	cout << "nr de ponderi";
+	cin >> n;
+	cout << "nr de linii";
+	cin >> m;
+	int l[10];
+	float p[10];
+	float s;
+
+	if (n <= 10 && m <= 10) {
+		citire(l, p, n, m);
+		cout << calcul(l, p, n, m);
+	}
+	return 0;
+ }
+

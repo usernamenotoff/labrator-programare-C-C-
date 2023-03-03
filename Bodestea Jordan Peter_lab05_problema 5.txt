@@ -1,0 +1,83 @@
+/*Bodestean Jordan
+Să se scrie programul care implementează clasa Numar cu un atribut de tip int val şi care, în
+cadrul funcţiei main(), declară un obiect de tipul clasei şi apoi un pointer la acesta, prin
+intermediul cărora se va afişa pe ecran rezultatul adunării a două numere de tip Numar cu
+valorile preluate de la tastatură in cadrul unor obiecte Numar. Implementati metoda int
+suma_nr(Numar) care realizeaza suma în cadrul clasei şi o returneaza ca un int, metoda care
+insumeaza cele doua obiecte (curent si parametru). Implementati metoda in cadrul clasei si
+alta metoda cu acelas scop, dar nume diferit, in afara clasei.*/
+
+#include<iostream>
+using namespace std;
+
+class ceva {
+
+public:
+	int plus(int x, int y) {
+		
+		return x + y;
+	}
+	int minus(int x, int y) {
+
+		return x - y;
+	}
+	int inmultire(int x, int y) {
+
+		return x* y;
+	}
+	float impartire(int x, int y) {
+
+		return float(x/y);
+	}
+
+};
+
+class ceva2 {
+	int x, y;
+public:
+	void setX(int x) {
+		this->x = x;
+	}
+	void setY(int y) {
+		this->y = y;
+	}
+	int plus() {
+
+		return x + y;
+	}
+	int minus() {
+
+		return x - y;
+	}
+	int inmultire() {
+
+		return x * y;
+	}
+	float impartire() {
+
+		return float(x / y);
+	}
+};
+
+int main() {
+	ceva p1;
+	cout << "introduceti 2 valori";
+	int n, m;
+	cin >> n >> m;
+	cout<<p1.plus(n,m)<<endl;
+	if (n > m) {
+		cout << p1.minus(n, m) << endl;
+	}
+	else cout << p1.minus(m, n)<<endl;
+	cout << p1.impartire(n, m) << endl;
+	cout << p1.inmultire(n, m)<<endl;
+
+
+	ceva2 p2;
+	p2.setX(5);
+	p2.setY(6);
+	cout << p2.impartire()<<endl;
+	cout << p2.inmultire()<<endl;
+	cout << p2.minus() << endl;
+	cout << p2.plus() << endl;
+}

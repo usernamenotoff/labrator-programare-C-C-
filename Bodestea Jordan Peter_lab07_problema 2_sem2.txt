@@ -1,0 +1,78 @@
+/* Bodestean Jordan
+Să se scrie o aplicaţie C/C++ care să modeleze obiectual un tablou unidimensional de numere
+reale. Creaţi două instanţe ale clasei şi afișați valorile unui al 3-lea tablou, obținute prin
+scăderea elementelelor corespunzătoare din primele 2 tablouri. Dacă tablourile au lungimi
+diferite, tabloul rezultat va avea lungimea tabloului cel mai scurt.*/
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class tablou
+{ private:
+	float a;
+public:
+
+	
+	int getElemente();
+
+	
+	void setelemente();
+};
+void tablou::setelemente()
+{
+	cin >>a;
+	
+}
+
+
+int tablou::getElemente()
+{
+	return a;
+}
+
+
+int main()
+{
+	tablou t1[30], t2[30], t3[30];
+	float a[50];
+	int n, i;
+	cout << "nr de elemente primul tablou - ";
+	cin >> n;
+	cout << endl;
+	for (i = 0; i < n; i++)
+		t1[i].getElemente();
+
+	cout << "datele tabloului " << endl;
+	for (i = 0; i < n; i++) {
+		cout << "t1[" << i << "]" << "=";
+			t1[i].setelemente();
+	}
+	int m;
+	cout << "introduceti lungimea celui de al 2-lea sir-";
+	cin >> m;
+	cout << endl;
+	for (i = 0; i < m; i++)
+		t2[i].getElemente();
+
+	cout << "datele tabloului " << endl;
+	
+	for (i = 0; i < m; i++) {
+		cout << "t2[" << i << "]" << "=";
+		t2[i].setelemente();
+	}
+	if (n > m) {
+		for (i = 0; i < m; i++) {
+			a[i] = t2[i].getElemente()-t1[i].getElemente();
+			cout << a[i] << endl;
+		}
+	}
+	else for (i = 0; i < n; i++) {
+		a[i] = t2[i].getElemente() - t1[i].getElemente();
+		cout << "t2[" << i << "]" << "="<<a[i] << endl;
+	}
+
+	
+}

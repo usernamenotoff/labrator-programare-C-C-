@@ -1,0 +1,64 @@
+/*Bodestean Jordan -Trofin Denisa
+Să se scrie o aplicaţie C++ care implementează o clasă numită Triunghi. Clasa cuprinde
+atributele private pentru laturile a, b, c de tip int, un constructor cu parametrii, metode setter si
+getter adecvate. Calculați aria și perimetrul prin metode specifice clasei. Scrieți o metodă care
+să indice dacă triunghiul este dreptunghic sau nu. Definiti o metoda private cu parametrii in
+clasa care permite verificarea condiției ca laturile să formeze un triunghi. Ea va fi folosita si
+de metodele setter.
+*/
+
+// cu public si private//
+#include <iostream>
+using namespace std;
+#include<math.h>
+class Triunghi
+{
+private: int a;
+	   int b;
+	   int c;
+public:
+
+	int getPerimetru()
+	{
+		return a + b + c;
+	}
+	void setLaturi(int x, int y, int z)
+	{
+		a = x;
+		b = y;
+		c = z;
+	}
+	
+
+	float  getAria()
+	{
+		return   sqrt(((a + b + c) / 2) * ((a + b + c) / 2 - a) * ((a + b + c) / 2 - b) * ((a + b + c) / 2 - c));
+		
+	}
+	
+	int  getDreptunghic() {
+		int ok = 0;
+		if ((a * a == b * b + c * c) || (b * b == a * a + c * c) || (c * c == a * a + b * b)) ok = 1;
+			return ok ;
+		
+	}
+
+
+};
+
+int main()
+{
+	Triunghi t1;
+	t1.setLaturi(3, 4, 5);
+	
+	cout << "\nperimetrul este: " << t1.getPerimetru();
+	cout << "\nAria este: " << t1.getAria() << endl;
+	if (t1.getDreptunghic() == 1)cout << "triunghiul este drepthunghic" << endl;
+	else cout << "triunghiul nu este drepthunghic" << endl;
+
+}
+
+
+
+
+

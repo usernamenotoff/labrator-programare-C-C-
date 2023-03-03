@@ -1,0 +1,55 @@
+/* Bodestean Jordan-Denisa Trifon
+
+Definiţi o clasă numita Triangle care are 3 atribute protected pentru laturi si o metoda care calculează perimetrul unui triunghi ale cărui laturi
+sunt citite de la tastatura (folosite de un constructor adecvat) şi apoi o clasă derivata in mod public din Triangle, Triangle_extended, care în plus,
+calculează şi aria triunghiului. Folosind obiecte din cele doua clase apelati metodele specifice. Verificati inainte de instantiere posibilitatea
+definirii unui triunghi.*/
+
+#include <iostream>
+using namespace std;
+
+class Triunghi {
+protected: int l1, l2, l3;
+public:
+        Triunghi(int a, int b, int c) {
+                l1 = a;
+                l2 = b;
+                l3 = c;
+        }
+        //destructor
+        ~Triunghi();
+        int perimetru() {
+                return l1 + l2 + l3;
+        }
+        
+};
+//clasa Triunghi_extins derivata in mod public din clasa Triunghi
+class Triunghi_extins : public Triunghi {
+public:
+        Triunghi_extins() = default;
+        float aria() {
+                float sp; //sp=semiperimetru
+                sp = perimetru() / 2;
+                return (float)sqrt(sp * (sp - l1) * (sp - l2) * (sp - l3));
+        }
+};
+int main() {
+        int l1, l2, l3;
+        cout << "\nIntroduceti cele 3 laturi:\n";
+        cout << "\tl1= ";
+        cin >> l1;
+        cout << "\tl2= ";
+        cin >> l2;
+        cout << "\tl3= ";
+        cin >> l3;
+        //verificarea existentei unui triunghi
+        if (l1 + l2 > l3 || l2 + l3 > l1 || l1 + l3 > l2) {
+                cout << "\nExista triunghi.";
+        }
+        else cout << "\nNu exista triunghi.";
+        Triunghi t(l1, l2, l3);
+        Triunghi_extins tr_extins();
+        cout << "\nPerimetrul triunghiului este:" << t.perimetru();
+        cout << "\nAria triunghiului este: " << tr_extins.aria();
+
+}

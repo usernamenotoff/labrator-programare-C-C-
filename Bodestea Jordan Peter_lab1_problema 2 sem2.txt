@@ -1,0 +1,36 @@
+
+#define _CRT_SECURE_NO_WARNINGS
+
+//problema2 lab1
+Definiţi o funcţie inline min( ) care determină şi afişează minimul dintre 2 si alta dintre 3 numere întregi
+introduse de la tastatură. Considerati supraincarcarea functiilor.
+//
+#include<iostream>
+using namespace std;
+inline int min2(int a, int b);
+inline int min3(int a, int b, int c);
+int main() {
+	int v1, v2,v3, m2,m3;
+	cin >> v1;
+	cin >> v2;
+	cin >> v3;
+	m2 = min2(v1, v2);
+	cout << "minimul dintre 2 elemente este";
+	m3 = min3(v1, v2, v3);
+}
+
+
+inline int min2(int a, int b)
+{
+	if (a < b)return a;
+	else return b;
+
+
+}
+inline int min3(int a, int b, int c) {
+	if (a < b && a < c)
+		c = a;
+	else if (b < a && b < c)c = b; \
+
+		return c;
+}

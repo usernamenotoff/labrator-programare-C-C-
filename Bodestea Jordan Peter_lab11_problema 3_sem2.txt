@@ -1,0 +1,93 @@
+/* Bodestean Jordan
+Să se scrie un program C++ în care se defineşte o clasă Militar cu o metodă publică virtuală sunt_militar( ) care indică apartenenţa la armată. Derivaţi clasa Militar pentru a crea clasa Soldat şi clasa Ofiter. Derivaţi mai departe clasa Ofiter pentru a obtine clasele SubLocotenent, Locotenent, Capitan, Maior, Colonel, General. Redefiniti metoda sunt_militar( ) pentru a indica gradul militar pentru fiecare clasa specifica. Instantiati fiecare clasa Soldat, Locotenent,...,General, si apelati metoda sunt_militar( ).*/
+
+
+#include<iostream>
+using namespace std;
+
+class Militar {
+public:
+	virtual void sunt_militar() { cout << "sunt militar\n"; }
+};
+
+class Soldat :public Militar {
+
+public:void sunt_militar()override {
+		cout << "\nsoldat\n";
+	}
+};
+class Ofiter :public Militar {
+public: void sunt_militar()override {
+		cout << "\nofiter\n";
+	}
+
+};
+
+
+class Sublocotenent :public Ofiter {
+
+public:void sunt_militar()override {
+		cout << "\nsublocotenent\n";
+	}
+};
+
+class Locotenent :public Ofiter {
+public:
+	void sunt_militar()override {
+		cout << "\nLocotenent\n";
+	}
+};
+
+
+class Capitan :public Ofiter {
+public:void sunt_militar()override {
+		cout << "\ncapitan\n";
+	}
+};
+
+class Maior :public Ofiter {
+public:void sunt_militar()override {
+		cout << "\nmaior\n";
+	}
+
+};
+class Colonel :public Ofiter {
+
+public:void sunt_militar()override {
+		cout << "\ncolonel\n";
+	}
+
+};
+
+class General :public Ofiter {
+public:
+	void sunt_militar()override {
+		cout << "\ngeneral\n";
+	}
+
+};
+
+int main() {
+	Militar p1;
+	p1.sunt_militar();
+	Soldat p2;
+	p2.sunt_militar();
+	Ofiter p3;
+	p3.sunt_militar();
+	Sublocotenent p4;
+	p4.sunt_militar();
+	Locotenent p5;
+	p5.sunt_militar();
+	Capitan p9;
+	p9.sunt_militar();
+	Maior p6;
+	p6.sunt_militar();
+	Colonel p7;
+	p7.sunt_militar();
+	General p8;
+	p8.sunt_militar();
+	
+
+	return 0;
+}
+

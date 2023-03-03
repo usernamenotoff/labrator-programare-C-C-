@@ -1,0 +1,117 @@
+//Lab 4 problema 6//
+//Cititi de la tastatura m elemente de tip intreg intr-un tablou unidimensional si o valoare intreaga n<m. Impartiti
+tabloul citit in doua sub-tablori astfel:
+a) primul subtablou va contine primele n elemente din tabloul initial
+b) al doilea subtablou va contine restul elementelor din tablul initial.
+Sa se realizeze urmatoarele operatii:
+ 1. sa se ordoneze crescator cele doua subtablouri
+ 2. sa se sorteze tabloul initial, prin interclasarea celor doua subtablori ordonate. (merge-sort)//
+
+
+#include <iostream>
+using namespace std;
+
+void tablou1(int a[], int m) {
+	int i;
+	for (i = 0; i < m; i++) {
+		cout << "a[" << i << "]" << "=";
+		cin >> a[i];
+		cout << endl;
+	}
+}
+
+void ordonare(int[], int, int);
+void ordonare2(int[], int);
+
+int main()
+{
+	int a[25], v[25];
+	int m, i, j;
+	cout << " introduceti nr de elemente pentru primul tablou ";
+	cin >> m;
+	cout << endl;
+	tablou1(a, m);
+	int n;
+	cout << "introduceti nr de elemente pentru al doilea tablou";
+	cin >> n;
+
+
+
+
+	
+
+	
+	int k = 0;
+	if (n < m) {
+		i = 0;
+		j = 0;
+		while (i < n && j < n) {
+			v[j] = a[i];
+
+			j++;
+			i++;
+			k++;
+		}
+
+
+	}
+else cout << "introduceti alt n";
+	
+	for (j = 0; j < n; j++) {
+		cout <<"v["<<j<<"]"<<"="<< v[j] << endl;
+	}
+	for (i = k; i < m; i++) {
+		cout <<"a["<<i<<"]"<<"="<<a[i] << endl;
+	}
+
+	ordonare(a, n, k);
+
+	for (i = k; i < m; i++) 
+		cout << a[i] << endl;
+	
+	ordonare2(v, n);
+
+	for (i = 0; i < n; i++)cout << "a[" << i << "]" << "="<< v[i] << endl;
+
+	return 0;
+
+
+
+
+}
+void ordonare(int a[], int m, int k) {
+	int i, j, aux;
+	cout << endl;
+	cout <<"k="<< k;
+	for (j = 0; j < m; j++) {
+		for (i = k; i < m - 1; i++) {
+
+			if (a[i] > a[i + 1]) {
+				aux = a[i];
+				a[i] = a[i + 1];
+				a[i + 1] = aux;
+			}
+
+		}
+	}
+}
+
+
+
+
+void ordonare2(int v[], int n) {
+	int i, j, aux;
+	cout << endl;
+	
+	for (j = 0; j < n; j++) {
+		for (i = 0; i < n - 1; i++) {
+
+			if (v[i] > v[i + 1]) {
+				aux = v[i];
+				v[i] = v[i + 1];
+				v[i + 1] = aux;
+			}
+
+		}
+	}
+}

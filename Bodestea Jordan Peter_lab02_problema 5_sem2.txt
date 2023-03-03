@@ -1,0 +1,28 @@
+//lab 02 problema 5
+//Citiţi un şir de caractere de la tastatură, caracter cu caracter, cu ajutorul unei funcţi bazate pe
+caracter. Afişaţi şirul în ordine inversă folosind o funcţie recursivă.//
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+using namespace std;
+
+
+void reverse(string str,int k=0)
+{
+    if (k==str.size())
+    {
+        return;
+    }
+    reverse(str,k+1);
+    cout << str[k];
+}
+
+
+int main()
+{
+    string a;
+    cin >> a;
+    reverse(a);
+    return 0;
+}

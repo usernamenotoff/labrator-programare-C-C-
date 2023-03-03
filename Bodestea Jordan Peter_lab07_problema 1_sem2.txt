@@ -1,0 +1,221 @@
+/*Modificaţi exemplul 3 astfel încât să permită obtinerea unui nou punct, avand coordonatele obtinute prin adunarea coordonatelor a două astfel de puncte.
+Numele noului punct va fi rezultat prin concatenarea numelor celor două puncte. Adaugati si testati o metoda care calculeaza distanta de la un punct
+la origine. Modificați clasa astfel încât sa eliminați metoda afis() folosind in schimb metode accesor adecvate. Eliminați de asemenea atributul
+lungime_sir modificând adecvat metodele
+clasei. Adaugati si un move constructor. Testati utilizand si functii specifice sirurilor de caractere din VC++1y/2z (strcpy_s( ) si strcat_s( )).
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string.h>
+#include <math.h>
+using namespace std;
+
+const int dim_sir = 21;
+class CPunctText
+{
+    int x;
+    int y;
+    int lungime_sir;    //atribut redundant
+    char* sNume;
+public:
+    //constructor explicit vid
+    CPunctText();
+    //constructor cu parametri
+    CPunctText(int ix, int iy, const char* sText = "Punct");
+    //constructor de copiere
+    CPunctText(const CPunctText& pct);
+    //move constructor (x si y trebuie sa fie pointeri)
+  /*  CPunctText(CPunctText&& punct)
+    {
+        x = punct.x;
+        y = punct.y;
+        punct.x = nullptr;
+        punct.y = nullptr;
+
+    }*/
+     //destructor:
+    ~CPunctText();
+    void setX(int x)
+    {
+        this->x = x;
+    }
+    int getX()
+    {
+        return x;
+    }
+    void setY(int y)
+    {
+        this->y = y;
+    }
+    int getY()
+    {
+        return y;
+    }
+    float distanta();
+
+};
+CPunctText::CPunctText()
+{
+  //cout << "\n constructor explicit vid";
+    x = y = 0;
+    lungime_sir = dim_sir;
+    sNume = new (std::nothrow) char[lungime_sir];
+    strcpy(sNume, "Veronica");
+}
+CPunctText::CPunctText(int ix, int iy, const char* sText)
+{
+   //out << "\n constructor cu parametri";
+    lungime_sir = strlen(sText) + 1;
+    sNume = new (std::nothrow) char[lungime_sir];
+    x = ix;
+    y = iy;
+    strcpy(sNume, sText);
+}
+CPunctText::CPunctText(const CPunctText& pct)
+{
+    //ut << "\n constructor de copiere";
+    sNume = new (std::nothrow) char[pct.lungime_sir];
+    x = pct.x;
+    y = pct.y;
+    lungime_sir = pct.lungime_sir;
+    strcpy(sNume, pct.sNume);
+}
+CPunctText::~CPunctText()
+{
+    delete[] sNume;
+}
+
+float CPunctText::distanta()
+{
+    return (float)sqrt(x * x + y * y);
+}
+
+int main()
+{
+    CPunctText pct1, pct2;
+    pct1.setX(4);
+    pct1.setY(5);
+    cout << "\nCoordonatele punctului 1 sunt: ";
+    cout << "\n\tx= " << pct1.getX();
+    cout << "\n\ty= " << pct1.getY();
+    pct2.setX(8);
+    pct2.setY(5);
+    cout << "\nCoordonatele punctului 2 sunt: ";
+    cout << "\n\tx= " << pct2.getX();
+    cout << "\n\ty= " << pct2.getY();
+    cout << "\nDistanta dintre punctul 1 si origine este: "<<pct1.distanta();
+    
+}
+
+
+
+
+
+//cu getter si setter//
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string.h>
+#include <math.h>
+using namespace std;
+
+const int dim_sir = 21;
+class CPunctText
+{
+    int x;
+    int y;
+    int lungime_sir;    //atribut redundant
+    char* sNume;
+public:
+    //constructor explicit vid
+    CPunctText();
+    //constructor cu parametri
+    CPunctText(int ix, int iy, const char* sText = "Punct");
+    //constructor de copiere
+    CPunctText(const CPunctText& pct);
+    //move constructor (x si y trebuie sa fie pointeri)
+  /*  CPunctText(CPunctText&& punct)
+    {
+        x = punct.x;
+        y = punct.y;
+        punct.x = nullptr;
+        punct.y = nullptr;
+
+    }*/
+     //destructor:
+    ~CPunctText();
+    void setX(int x)
+    {
+        this->x = x;
+    }
+    int getX()
+    {
+        return x;
+    }
+    void setY(int y)
+    {
+        this->y = y;
+    }
+    int getY()
+    {
+        return y;
+    }
+    float distanta();
+
+};
+CPunctText::CPunctText()
+{
+  //cout << "\n constructor explicit vid";
+    x = y = 0;
+    lungime_sir = dim_sir;
+    sNume = new (std::nothrow) char[lungime_sir];
+    strcpy(sNume, "Veronica");
+}
+CPunctText::CPunctText(int ix, int iy, const char* sText)
+{
+   //out << "\n constructor cu parametri";
+    lungime_sir = strlen(sText) + 1;
+    sNume = new (std::nothrow) char[lungime_sir];
+    x = ix;
+    y = iy;
+    strcpy(sNume, sText);
+}
+CPunctText::CPunctText(const CPunctText& pct)
+{
+    //ut << "\n constructor de copiere";
+    sNume = new (std::nothrow) char[pct.lungime_sir];
+    x = pct.x;
+    y = pct.y;
+    lungime_sir = pct.lungime_sir;
+    strcpy(sNume, pct.sNume);
+}
+CPunctText::~CPunctText()
+{
+    delete[] sNume;
+}
+
+float CPunctText::distanta()
+{
+    return (float)sqrt(x * x + y * y);
+}
+
+int main()
+{
+    CPunctText pct1, pct2;
+    pct1.setX(4);
+    pct1.setY(5);
+    cout << "\nCoordonatele punctului 1 sunt: ";
+    cout << "\n\tx= " << pct1.getX();
+    cout << "\n\ty= " << pct1.getY();
+    pct2.setX(8);
+    pct2.setY(5);
+    cout << "\nCoordonatele punctului 2 sunt: ";
+    cout << "\n\tx= " << pct2.getX();
+    cout << "\n\ty= " << pct2.getY();
+    cout << "\nDistanta dintre punctul 1 si origine este: "<<pct1.distanta();
+    
+}
+
+

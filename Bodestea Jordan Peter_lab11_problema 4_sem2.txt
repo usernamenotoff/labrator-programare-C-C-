@@ -1,0 +1,59 @@
+/*Bodestean Jordan
+Declarati o clasa Animal, care va contine o metoda pur virtuala, respira( ) si doua metode virtuale 
+manaca( ) si doarme( ). Derivati in mod public o clasa Caine si alta Peste, care vor defini 
+metoda pur virtuala, 
+iar clasa Caine va redefini metoda mananca( ), iar Peste metoda doarme( ).
+Instantiati obiecte din cele doua clase si apelati metodele specifice. Definiti apoi un tablou de tip
+Animal,care va contine obiecte din clasele derivate, daca e posibil. Daca nu, gasiti o solutie adecvata.
+*/
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class Animal {
+
+public:
+	virtual void respira() = 0;
+	virtual void mananca() { cout << "not override\n"; }
+	virtual void doarme() {cout << "not override\n"; }
+
+
+};
+class Peste :public Animal {
+public:
+	void respira() { cout << "pe uscat\n"; }
+	void doarme() override { cout << "overrided\n"; }
+	
+};
+
+class Caine :public Animal {
+public:
+	void respira() { cout << "sub apa\n"; }
+	void mananca()override {
+		cout << "overrided \n";
+	}
+};
+
+int main() {
+	Caine c;
+	Animal* d;
+		Peste p;
+	
+		d = &c;
+		cout << "caine" << endl;
+		d->mananca();
+		d->doarme();
+		d->respira();
+		
+		d = &p;
+		cout << "peste" << endl;
+		d->mananca();
+		d->doarme();
+		d->respira();
+		return 0;
+
+}

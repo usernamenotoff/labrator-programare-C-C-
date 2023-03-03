@@ -1,0 +1,55 @@
+//lab04 problema1//
+//Implementaţi metoda bulelor (Bubble-Sort) care foloseşte un indicator flag şi optimizează ciclul interior. Se
+cere atât scrierea funcţiei, cât şi partea de program care face citirea şi afişarea şirului iniţial şi a celui ordonat.//
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <search.h>
+#include<iostream>
+
+using namespace std;
+
+void sortare(int n, int p[25]) {
+	int i;
+	int flag = 0;
+	int aux;
+	int j;
+	for ( j = 0; j < n; j++) {
+		flag = 0;
+
+		for (i = 0; i < n-1; i++) {
+			if (p[i] > p[i + 1]) {
+				aux = p[i];
+				p[i] = p[i + 1];
+				p[i + 1] = aux;
+				flag = 1;
+			}
+		}
+			if (flag == 0)break;
+		
+	}
+	
+}
+int main() {
+	int n;
+	int a[25];
+	cout << "introduceti nr de elemente" << endl;
+	cin >> n;
+	int i;
+	for (i = 0; i < n; i++) {
+		cout << "a" << "[" << i << "]" << "=";
+		cin >> a[i];
+		cout << endl;
+	}
+
+	for (i = 0; i < n; i++) {
+		cout << a[i] << endl;
+	}//sirul initial
+
+	sortare(n, a);
+	cout << endl;
+	for (i = 0; i < n; i++) {
+		cout << a[i] << endl;
+	}//sirul ordonat
+
+
+}

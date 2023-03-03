@@ -1,0 +1,28 @@
+/*Bodestean Jordan 
+Să se modifice exemplul 2 astfel încât codul să poată fi lansat în execuție considerand
+atributul clasei private si metode public get/set adecvate. In main() instantiati un obiect din
+clasa care va fi modificat si apoi accesat, afisand rezultatul.*/
+
+#include<iostream>
+using namespace std;
+
+class Test2 {
+private:int x;
+
+public:
+	void setX(int x) {
+		this->x = x;
+	}
+	int getX() {
+		return x;
+	}
+};
+
+	int main() {
+
+
+		Test2 nr;
+		nr.setX(20);
+		cout << nr.getX();
+
+	}

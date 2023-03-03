@@ -1,0 +1,104 @@
+/*Bodestean Jordan
+Să se scrie o clasă care are ca variabilă privată un câmp de tip data, definit într-o structură externă clasei. Clasa conține metode 
+mutator/setter și accesor/getter (publice) pentru informația privată, ca si structura de tip data, pentru fiecare camp din structura. In clasă se mai
+află doua metode publice care:
+- testează validitatea datei stocate;
+- scrie într-un fișier toate datele din anul curent care preced (cronologic) data stocată în clasă considerand doar atributul an ca fiind variabil;
+In functia main(), după instanțierea clasei și citirea de la tastatură a componentelor unei date, să se apeleze metodele membre și apoi să se verifice 
+rezultatele obținute.*/
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ofstream fout("Text.txt");
+
+struct Strdata
+{int luna;
+	int an;
+	int zi;
+	
+};
+
+class Timp 
+{
+private: Strdata data;
+public:
+	int getZi()
+	{
+		return data.zi;
+    }
+	void setZi(int zi)
+	{
+		data.zi = zi;
+	}
+	int getLuna()
+	{
+		return data.luna;
+	}
+	void setLuna(int luna)
+	{
+		data.luna = luna;
+	}
+	int getAn()
+	{
+		return data.an;
+	}
+	void setAn(int an)
+	{
+		data.an = an;
+	}
+	int setValidare()
+	{
+		if (data.an > 0)
+		{
+			if ((data.luna >= 1) && (data.luna <= 12))
+		  {
+		       if ((data.zi >= 1) && (data.zi < 31))
+		       {
+				   return 1;
+			   }
+	   	  }
+		}
+		return 0;
+	}
+	void generare()
+	{
+		for (int i = data.luna; i<=12; i++)
+		{
+			if (i == data.luna)
+			{
+				for (int j = data.zi; j <= 31; j++)
+				{
+					fout << j << "." << i << "." << data.an << endl;
+				}
+			}
+			    for (int j = 1; j <= 31; j++)
+			    {
+					fout << j << "." << i << "." << data.an << endl;
+			    }
+		}
+	}
+};
+
+int main()
+{
+	int zi, luna, an;
+	Timp d, * strd = &d;
+	cout << "\nIntroduceti ziua: ";
+	cin >> zi;
+	strd->setZi(zi);
+	cout << "\nIntroduceti luna: ";
+	cin >> luna;
+	strd->setLuna(luna);
+	cout << "\nIntroduceti anul: ";
+	cin >> an;
+	strd->setAn(an);
+	if (strd->setValidare() == 1)
+	{
+		cout << "\nData este valida!";
+		strd->generare();
+	}
+	else
+		cout << "\nData este invalida!";
+}

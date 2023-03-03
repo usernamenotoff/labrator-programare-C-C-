@@ -1,0 +1,98 @@
+/* Bodestean Jordan
+Modelați clasa Student care să conțină atributele private nume, prenume, note (tablou 7 valori
+int), grupa. Alocați dinamic memorie pentru n studenți. Calculați media cu o metoda din clasa
+și sortați studenții după medie, afisând datele fiecărui student (nume, prenume, grupa, medie).
+Implementati si destructorul clasei care să afișeze un mesaj*/
+
+
+
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class student
+{
+private:int nota[7];
+	   char prenume[20];
+	   char nume[20];
+	   int grupa;
+
+public:
+	void setNota();
+	int getNota();
+	void Getdate();
+	int getmedia();
+		
+	
+
+
+	~student();
+};
+
+void student::setNota() {
+	cout << "introduceti numele";
+	cin >> nume;
+	cout << "introduceti prenumele";
+	cin >> prenume;
+	int i;
+	cout << "intrdoceti notele" << endl;
+	for (i = 0; i < 7; i++)cin >> nota[i];cout<< endl;
+
+}
+student::~student() {
+	cout << "a fost folosit deconstructoru";
+}
+void student::Getdate() {
+	cout << "numele=";
+	cout << nume << endl;
+	cout << "prenumele";
+	cout << prenume << endl;
+	for (int i = 0; i < 7; i++)cout << "notele:"<<nota[i] << endl;
+	
+}
+int student::getNota() {
+	for (int i = 0; i < 7; i++)return nota[i];
+}
+int student::getmedia() {
+	int s = 0;
+	float media = 0;
+	for (int i = 0; i < 7; i++) { s = s + nota[i]; }
+	media =float( s / 7);
+	return media;
+}
+
+int comp(const void*a, const void*b) {
+	student* p = (student*)a;
+	student* c = (student*)b;
+	return (c->getmedia() - p->getmedia());
+
+	}
+
+
+
+int main() {
+	student p1[30];
+	int n;
+	cout << "introduceti nr de studednti" << endl;
+	cin >> n;
+	cout << endl;
+	for (int i = 0; i < n; i++) {
+		p1[i].setNota();
+		
+	}
+	for (int i = 0; i < n; i++) {
+		p1[i].Getdate();
+
+	}
+	qsort(p1, n, sizeof(student), comp);
+
+	for (int i = 0; i < n; i++) {
+		p1[i].Getdate();
+
+	}
+
+	}
+		
+	
+
