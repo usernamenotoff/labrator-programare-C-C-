@@ -1,1 +1,1 @@
-# labrator-programare-C-C-
+# labrator-programare-C++/C*
